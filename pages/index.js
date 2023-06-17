@@ -32,10 +32,10 @@ export default function Home() {
         <title>Leaderboard Tracker</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <marquee style={{behavior: "alternate"}}>🖕🖕🖕🖕🖕🍆🍆🍆🍆🍆🍆🖕🖕🖕🖕🖕🍆🍆🍆🍆🍆🍆</marquee>
+      <marquee style={{behavior: "alternate", fontSize: "xx-large"}}>🖕🖕🖕🖕🖕🍆🍆🍆🍆🍆🍆🖕🖕🖕🖕🖕🍆🍆🍆🍆🍆🍆</marquee>
       <main>
       
-        <div className="text-center" style={{paddingBottom: "30px"}}>
+        <div className="text-center" style={{paddingBottom: "30px", marginTop: "50px"}}>
           <h1 style={{color: "black"}}><b>Best Pick ($50 💵)</b></h1>
           <IndividualLeader data={data} />
         </div>
@@ -46,15 +46,16 @@ export default function Home() {
         </div>
 
         <div  className="text-center" >
-          <p>
-            For those who had a player who missed the cut, the player's final leaderboard position 
-            is taken as <span style={{color: "black"}}><b>111</b></span> to calculate the average. 
-          </p>
-          <p>
-            This is due to the fact of the <span style={{color: "blue"}}><b>156</b></span> player 
+          
+          <p style={{color: "black"}}>
+            Of the <span style={{color: "blue"}}><b>156</b></span> player 
             field for the tournament, <span style={{color: "green"}}><b>65</b></span> players made 
-            the cut. <span style={{color: "red"}}><b>91</b></span> players missed the cut, meaning 
+            the cut. <span style={{color: "red"}}><b>91</b></span> players missed the cut (or withdrew), meaning 
             the average player who missed the cut finished <span style={{color: "black"}}><b>110.5</b></span>.
+          </p>
+          <p style={{color: "black"}}>
+            For those who had a player who missed the cut, the player's final leaderboard position 
+            is taken as this value to calculate the average. 
           </p>
         </div>
 
@@ -111,7 +112,7 @@ function GroupLeader({ data }) {
       color = "orange"
     }
     if (position == 4) {
-      displayPosition = "fourth"
+      displayPosition = "last"
       color = "red"
     }
     total.push(<h2 key={position+last} className="text-center" style={{ position: "centered" }}><span style={{ color: "black" }}><b>{curr.person}</b></span> is in <span style={{ color: color }}><b>{displayPosition}</b></span> with an average leaderboard position of <span style={{ color: color }}><b>{curr.average}</b></span></h2>)
