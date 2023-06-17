@@ -32,7 +32,7 @@ export default function Home() {
         <title>Leaderboard Tracker</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <marquee style={{behavior: "alternate", fontSize: "xx-large"}}>🖕🖕🖕🖕🖕🍆🍆🍆🍆🍆🍆🖕🖕🖕🖕🖕🍆🍆🍆🍆🍆🍆</marquee>
+      <marquee style={{behavior: "alternate", fontSize: "xx-large"}}>🍆🍆𓂸𓂸🍌🍌🍌🍌╰⋃╯╰⋃╯╭ᑎ╮╭ᑎ╮🍄🍄🍄🍆🍆𓂸𓂸🍌🍌🍌🍌╰⋃╯╰⋃╯╭ᑎ╮╭ᑎ╮🍄🍄🍄</marquee>
       <main>
       
         <div className="text-center" style={{paddingBottom: "30px", marginTop: "50px"}}>
