@@ -31,7 +31,6 @@ export default function Home() {
         <title>Leaderboard Tracker</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <marquee style={{ behavior: "alternate", fontSize: "xx-large" }}>🍆🍆𓂸𓂸🍌🍌🍌🍌╰⋃╯╰⋃╯╭ᑎ╮╭ᑎ╮🍄🍄🍄🍆🍆𓂸𓂸🍌🍌🍌🍌╰⋃╯╰⋃╯╭ᑎ╮╭ᑎ╮🍄🍄🍄</marquee>
       <main>
 
         <div className="text-center" style={{ paddingBottom: "30px", marginTop: "50px" }}>
@@ -111,8 +110,8 @@ function normalize(data) {
 
 function IndividualLeader({ data }) {
   const best = getTopLeader(data)
-  let bestGolfer = " has the lowest scoring golfer with "
-  let inPosition = " who is currently "
+  let bestGolfer = " has won with the best pick with "
+  let inPosition = " who is finished "
 
   // best.guys = ['Shane', 'Clint', 'Craig']
   // best.players = ['Rory McIlory', 'Patrick Cantlay', 'Collin Morikawa']
@@ -137,7 +136,7 @@ function IndividualLeader({ data }) {
     bestGolfer = " has the lowest scoring golfer with"
   }
 
-  return <h2 className="text-center" style={{ position: "centered" }}><span style={{ color: "black" }}><b>{guy}</b></span> {bestGolfer} <span style={{ color: "green" }}><b>{player}</b></span> {inPosition} <span style={{ color: "green" }}><b>{best.position}</b></span> on the leaderboard</h2>
+  return <h2 className="text-center" style={{ position: "centered" }}><span style={{ color: "black" }}><b>{guy}</b></span> {bestGolfer} <span style={{ color: "green" }}><b>{player}</b></span> {inPosition} <span style={{ color: "green" }}><b>{best.position}</b></span>nd on the leaderboard</h2>
 }
 
 function GroupLeader({ data }) {
@@ -162,7 +161,7 @@ function GroupLeader({ data }) {
       displayPosition = "last"
       color = "red"
     }
-    total.push(<h2 key={position + last} className="text-center" style={{ position: "centered" }}><span style={{ color: "black" }}><b>{curr.person}</b></span> is in <span style={{ color: color }}><b>{displayPosition}</b></span> with an average leaderboard position of <span style={{ color: color }}><b>{curr.average}</b></span></h2>)
+    total.push(<h2 key={position + last} className="text-center" style={{ position: "centered" }}><span style={{ color: "black" }}><b>{curr.person}</b></span> finished in <span style={{ color: color }}><b>{displayPosition}</b></span> with an average leaderboard position of <span style={{ color: color }}><b>{curr.average}</b></span></h2>)
     position += 1
   }
 
