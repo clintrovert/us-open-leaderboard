@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import Footer from '@components/Footer'
-import { useState, useEffect, React, Fragment } from 'react'
+import {React, useEffect, useState} from 'react'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import { PriorityQueue } from '@datastructures-js/priority-queue';
+import {PriorityQueue} from '@datastructures-js/priority-queue';
 
 
 export default function Home() {
@@ -12,10 +12,11 @@ export default function Home() {
   useEffect(() => {
     window.scrollTo(0, 0)
     setLoading(true)
-    fetch('https://ace-api.usga.org/scoring/v1/leaderboard.json?championship=uso&championship-year=2023')
+    fetch('https://www.masters.com/en_US/scores/feeds/2024/scores.json')
       .then((res) => res.json())
       .then((data) => {
-        setData(data)
+        console.log(data)
+        setData(data.data)
         setLoading(false)
       })
   }, [])
@@ -34,22 +35,21 @@ export default function Home() {
       <main>
 
         <div className="text-center" style={{ paddingBottom: "30px", marginTop: "50px" }}>
-          <h1 style={{ color: "black" }}><b>Best Pick ($50 💵)</b></h1>
+          <h1 style={{ color: "black" }}><b>Best Pick ($100 💵)</b></h1>
           <IndividualLeader data={normalized} />
         </div>
         {/* <hr style={{color: "black", border: "5px !important", borderTop: "5px solid rgba(0, 0, 0, 0.1) !important"}}/> */}
         <div className="text-center" style={{ paddingBottom: "30px" }} >
-          <h1 style={{ color: "black" }}><b>Leaderboard Average ($150 💵)</b></h1>
+          <h1 style={{ color: "black" }}><b>Leaderboard Average ($100 💵)</b></h1>
           <GroupLeader data={normalized} />
         </div>
 
         <div className="text-center" >
-
           <p style={{ color: "black" }}>
-            Of the <span style={{ color: "blue" }}><b>156</b></span> player
-            field for the tournament, <span style={{ color: "green" }}><b>65</b></span> players made
-            the cut. <span style={{ color: "red" }}><b>91</b></span> players missed the cut (or withdrew), meaning
-            the average player who missed the cut finished <span style={{ color: "black" }}><b>110.5</b></span>.
+            Of the <span style={{ color: "blue" }}><b>88</b></span> player
+            field for the tournament, <span style={{ color: "green" }}><b>59</b></span> players made
+            the cut. <span style={{ color: "red" }}><b>29</b></span> players missed the cut (or withdrew), meaning
+            the average player who missed the cut finished <span style={{ color: "black" }}><b>73</b></span>.
           </p>
           <p style={{ color: "black" }}>
             For those who had a player who missed the cut, the player's final leaderboard position
@@ -65,10 +65,10 @@ export default function Home() {
 }
 
 function normalize(data) {
-  const clint = { name: 'Clint', picks: [{ firstName: 'Viktor', lastName: 'Hovland' }, { firstName: 'Brooks', lastName: 'Koepka' }, { firstName: 'Max', lastName: 'Homa' }, { firstName: 'Dustin', lastName: 'Johnson' }] }
-  const shane = { name: 'Shane', picks: [{ firstName: 'Scottie', lastName: 'Scheffler' }, { firstName: 'Collin', lastName: 'Morikawa' }, { firstName: 'Cameron', lastName: 'Smith' }, { firstName: 'Sungjae', lastName: 'Im' }] }
-  const craig = { name: 'Craig', picks: [{ firstName: 'Rory', lastName: 'McIlroy' }, { firstName: 'Xander', lastName: 'Schauffele' }, { firstName: 'Cameron', lastName: 'Young' }, { firstName: 'Hideki', lastName: 'Matsuyama' }] }
-  const matt = { name: 'Matt', picks: [{ firstName: 'Jon', lastName: 'Rahm' }, { firstName: 'Patrick', lastName: 'Cantlay' }, { firstName: 'Jordan', lastName: 'Spieth' }, { firstName: 'Tony', lastName: 'Finau' }] }
+  const clint = { name: 'Clint', picks: [{ first_name: 'Jon', last_name: 'Rahm' }, { first_name: 'Jordan', last_name: 'Spieth' }, { first_name: 'Matt', last_name: 'Fitzpatrick' }, { first_name: 'Bryson', last_name: 'DeChambeau' }, { first_name: 'Cameron', last_name: 'Young' }, { first_name: 'Dustin', last_name: 'Johnson' }, { first_name: 'Patrick', last_name: 'Reed' }, { first_name: 'Min Woo', last_name: 'Lee' }] }
+  const shane = { name: 'Shane', picks: [{ first_name: 'Brooks', last_name: 'Koepka' }, { first_name: 'Wyndham', last_name: 'Clark' }, { first_name: 'Hideki', last_name: 'Matsuyama' }, { first_name: 'Joaquín', last_name: 'Niemann' }, { first_name: 'Sahith', last_name: 'Theegala' }, { first_name: 'Sam', last_name: 'Burns' }, { first_name: 'Justin', last_name: 'Thomas' }, { first_name: 'Akshay', last_name: 'Bhatia' }] }
+  const craig = { name: 'Craig', picks: [{ first_name: 'Rory', last_name: 'McIlroy' }, { first_name: 'Viktor', last_name: 'Hovland' }, { first_name: 'Will', last_name: 'Zalatoris' }, { first_name: 'Patrick', last_name: 'Cantlay' }, { first_name: 'Ludvig', last_name: 'Åberg' }, { first_name: 'Max', last_name: 'Home' }, { first_name: 'Brian', last_name: 'Harman' }, { first_name: 'Tiger', last_name: 'Woods' }] }
+  const matt = { name: 'Matt', picks: [{ first_name: 'Scottie', last_name: 'Scheffler' }, { first_name: 'Xander', last_name: 'Schauffele' }, { first_name: 'Cameron', last_name: 'Smith' }, { first_name: 'Collin', last_name: 'Morikawa' }, { first_name: 'Tony', last_name: 'Finau' }, { first_name: 'Shane', last_name: 'Lowry' }, { first_name: 'Tommy', last_name: 'Fleetwood' }, { first_name: 'Phil', last_name: 'Mickelson' }] }
 
   const persons = [clint, shane, craig, matt]
   let normalized = []
@@ -78,15 +78,15 @@ function normalize(data) {
     let response = {}
     response.players = []
     person.picks.forEach(pick => {
-      data.standings.forEach(standing => {
-        let player = standing.player
+      const positions = []
+      data.player.forEach(player => {
         let respPlayer = {}
-        if (pick.firstName == player.firstName && pick.lastName == player.lastName) {
-          respPlayer.name = player.firstName + " " + player.lastName
-          let standingDisp = standing.position.displayValue
+        if (pick.first_name === player.first_name && pick.last_name === player.last_name) {
+          respPlayer.name = player.first_name + " " + player.last_name
+          let standingDisp = player.pos
           respPlayer.position = standingDisp
-          let position = 100.5
-          if (standingDisp != 'MC') {
+          let position = 73
+          if (standingDisp !== '') {
             if (standingDisp.includes('T')) {
               position = parseInt(standingDisp.replace('T', ''))
             } else {
@@ -94,13 +94,16 @@ function normalize(data) {
             }
           }
           respPlayer.posint = position
-          leaderboardPositions += position
+          positions.push(position)
           response.players.push(respPlayer)
         }
       })
-      const avg = leaderboardPositions / 4
-      response.average = avg
     })
+
+    const positions = response.players.sort((a, b) => a.posint - b.posint);
+    const sum = positions.slice(0, 6).reduce((acc, curr) => acc + curr.posint, 0);
+    response.average = truncateToTwoDecimals(sum / 6)
+
     response.person = person.name
     normalized.push(response)
   })
@@ -108,13 +111,19 @@ function normalize(data) {
   return { guys: normalized }
 }
 
+function truncateToTwoDecimals(number) {
+  if (Number.isInteger(number)) {
+    return number;
+  } else {
+    return Number(number.toFixed(2));
+  }
+}
+
 function IndividualLeader({ data }) {
   const best = getTopLeader(data)
   let bestGolfer = " has won with the best pick with "
   let inPosition = " who is finished "
 
-  // best.guys = ['Shane', 'Clint', 'Craig']
-  // best.players = ['Rory McIlory', 'Patrick Cantlay', 'Collin Morikawa']
   let guy = best.guys[0]
   if (best.guys.length > 1) {
     guy = best.guys.join(', ').replace(/,(?!.*,)/gmi, ' and');
@@ -122,7 +131,7 @@ function IndividualLeader({ data }) {
     inPosition = " who are currently "
   }
 
-  if (best.guys.length == 1 && best.players.length > 1) {
+  if (best.guys.length === 1 && best.players.length > 1) {
     bestGolfer = " has the lowest scoring golfers with "
   }
 
@@ -132,7 +141,7 @@ function IndividualLeader({ data }) {
     inPosition = " who are currently "
   }
 
-  if (best.players.length == 1 && best.guys.legnth == 1) {
+  if (best.players.length === 1 && best.guys.legnth === 1) {
     bestGolfer = " has the lowest scoring golfer with"
   }
 
@@ -177,7 +186,7 @@ function getTopLeader(data) {
   try {
     data.guys.forEach(guy => {
       guy.players.forEach(player => {
-        if (player.posint == lowest) {
+        if (player.posint === lowest) {
           if (!bestGuys.includes(guy.person)) {
             bestGuys.push(guy.person)
           }
