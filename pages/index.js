@@ -121,8 +121,8 @@ function truncateToTwoDecimals(number) {
 
 function IndividualLeader({ data }) {
   const best = getTopLeader(data)
-  let bestGolfer = " has won with the best pick with "
-  let inPosition = " who is finished "
+  let bestGolfer = " has the best pick with "
+  let inPosition = " who is currently "
 
   let guy = best.guys[0]
   if (best.guys.length > 1) {
@@ -145,7 +145,7 @@ function IndividualLeader({ data }) {
     bestGolfer = " has the lowest scoring golfer with"
   }
 
-  return <h2 className="text-center" style={{ position: "centered" }}><span style={{ color: "black" }}><b>{guy}</b></span> {bestGolfer} <span style={{ color: "green" }}><b>{player}</b></span> {inPosition} <span style={{ color: "green" }}><b>{best.position}</b></span>nd on the leaderboard</h2>
+  return <h2 className="text-center" style={{ position: "centered" }}><span style={{ color: "black" }}><b>{guy}</b></span> {bestGolfer} <span style={{ color: "green" }}><b>{player}</b></span> {inPosition} <span style={{ color: "green" }}><b>{best.position}</b></span> on the leaderboard</h2>
 }
 
 function GroupLeader({ data }) {
@@ -158,19 +158,19 @@ function GroupLeader({ data }) {
   for (const curr of pq) {
     let displayPosition = "first"
     let color = "green"
-    if (position == 2) {
+    if (position === 2) {
       displayPosition = "second"
       color = "blue"
     }
-    if (position == 3) {
+    if (position === 3) {
       displayPosition = "third"
       color = "orange"
     }
-    if (position == 4) {
+    if (position === 4) {
       displayPosition = "last"
       color = "red"
     }
-    total.push(<h2 key={position + last} className="text-center" style={{ position: "centered" }}><span style={{ color: "black" }}><b>{curr.person}</b></span> finished in <span style={{ color: color }}><b>{displayPosition}</b></span> with an average leaderboard position of <span style={{ color: color }}><b>{curr.average}</b></span></h2>)
+    total.push(<h2 key={position + last} className="text-center" style={{ position: "centered" }}><span style={{ color: "black" }}><b>{curr.person}</b></span> is in <span style={{ color: color }}><b>{displayPosition}</b></span> with an average leaderboard position of <span style={{ color: color }}><b>{curr.average}</b></span></h2>)
     position += 1
   }
 
